@@ -7,6 +7,7 @@ import { ConfigModule } from '@nestjs/config';
 import { dataSourceOptions } from './config/database.config';
 import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
+import { TodosModule } from './todos/todos.module';
 
 @Module({
   imports: [
@@ -20,22 +21,7 @@ import { AuthModule } from './auth/auth.module';
     }),
     UsersModule,
     AuthModule,
+    TodosModule,
   ],
 })
 export class AppModule {}
-// import { Module } from '@nestjs/common';
-// import { TodosModule } from './todos/todos.module';
-// import { TypeOrmModule } from '@nestjs/typeorm';
-// import { AuthenticationsModule } from './auth/auth.module';
-// import { UsersModule } from './users/users.module';
-// import { dataSourceOptions } from './config/database.config';
-
-// @Module({
-//   imports: [
-//     TypeOrmModule.forRoot(dataSourceOptions),
-//     TodosModule,
-//     AuthenticationsModule,
-//     UsersModule,
-//   ],
-// })
-// export class AppModule {}
