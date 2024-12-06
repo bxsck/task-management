@@ -35,6 +35,18 @@ export class TodoQueryDto {
   limit?: number = 10;
 
   @ApiPropertyOptional({
+    type: Number,
+    description:
+      'Number of items to skip before starting to collect the result set',
+    default: 0,
+  })
+  @IsOptional()
+  @Type(() => Number)
+  @IsInt()
+  @Min(0)
+  offset?: number = 0;
+
+  @ApiPropertyOptional({
     type: Boolean,
     description: 'Sort todos by date in descending order',
   })
