@@ -42,7 +42,7 @@ export default function Home() {
             priority
           />
           <div className={styles.floatingCard}>
-            <span>��</span>
+            <span>🎯</span>
             <p>Track your goals</p>
           </div>
           <div className={styles.floatingCard}>
