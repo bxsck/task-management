@@ -8,7 +8,9 @@ import { dataSourceOptions } from './config/database.config';
 import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
 import { TodosModule } from './todos/todos.module';
+import * as dotenv from 'dotenv';
 
+dotenv.config();
 @Module({
   imports: [
     ConfigModule.forRoot(),
