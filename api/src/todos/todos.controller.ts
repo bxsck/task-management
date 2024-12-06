@@ -37,7 +37,7 @@ export class TodosController {
     description: 'Todo successfully created',
     type: Todo,
   })
-  async create(
+  async createMyTodoList(
     @Body(new ValidationPipe()) createTodoDto: CreateTodoDto,
     @CurrentUser() user: any,
   ) {
@@ -57,12 +57,12 @@ export class TodosController {
       },
     },
   })
-  async findAll(
+  async getMyTodoList(
     @Query(new ValidationPipe({ transform: true }))
     query: TodoQueryDto,
     @CurrentUser() user: any,
   ) {
-    const result = await this.todosService.findAll(query, user.id);
+    const result = await this.todosService.getTodoList(query, user.id);
     return {
       status: HttpStatus.OK,
       message: 'Todos retrieved successfully',
@@ -80,7 +80,10 @@ export class TodosController {
     status: 404,
     description: 'Todo not found',
   })
-  async delete(@Param('todoId') todoId: string, @CurrentUser() user: any) {
+  async deleteMyTodoList(
+    @Param('todoId') todoId: string,
+    @CurrentUser() user: any,
+  ) {
     await this.todosService.delete(todoId, user.id);
     return {
       status: HttpStatus.OK,

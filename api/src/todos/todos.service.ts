@@ -1,9 +1,10 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { FindOptionsOrder, Repository } from 'typeorm';
 import { Todo, TodoStatus } from './todo.entity';
 import { CreateTodoDto } from './dto/create-todo.dto';
 import { TodoQueryDto } from './dto/todo-query.dto';
+import { v4 } from 'uuid';
 
 @Injectable()
 export class TodosService {
@@ -16,35 +17,46 @@ export class TodosService {
     const todo = this.todoRepository.create({
       ...createTodoDto,
       userId,
+      id: v4(),
       status: createTodoDto.status || TodoStatus.TODO,
     });
 
     return this.todoRepository.save(todo);
   }
 
-  async findAll(
+  async getTodoList(
     query: TodoQueryDto,
     userId: string,
   ): Promise<{ todos: Todo[]; total: number }> {
-    const { status, page = 1, limit = 10, isSortTodoDateDesc = true } = query;
+    const {
+      status,
+      limit = 10,
+      offset: page = 1,
+      isSortTodoDateDesc = true,
+    } = query;
 
-    const queryBuilder = this.todoRepository
-      .createQueryBuilder('todo')
-      .where('todo.userId = :userId', { userId });
-
-    // Apply status filter if provided
+    const filter: any = { userId };
     if (status) {
-      queryBuilder.andWhere('todo.status = :status', { status });
+      filter.status = status;
     }
 
-    // Apply sorting
-    queryBuilder.orderBy('todo.createdAt', isSortTodoDateDesc ? 'DESC' : 'ASC');
+    const sort: FindOptionsOrder<Todo> = {
+      todo_date: isSortTodoDateDesc ? 'DESC' : 'ASC',
+    };
 
-    // Apply pagination
-    queryBuilder.skip((page - 1) * limit);
-    queryBuilder.take(limit);
+    const [todos, total] = await Promise.all([
+      this.todoRepository.find({
+        where: filter,
+        order: sort,
+        skip: (page - 1) * limit,
+        take: limit,
+      }),
+      this.todoRepository.count({
+        ...filter,
+      }),
+    ]);
 
-    const [todos, total] = await queryBuilder.getManyAndCount();
+    console.log('filter', filter);
 
     return {
       todos,

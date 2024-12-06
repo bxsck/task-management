@@ -31,7 +31,7 @@ export class CreateTodoDto {
   @IsEnum(TodoStatus)
   status?: TodoStatus;
 
-  @ApiProperty({ description: 'User ID who created the todo' })
-  @IsNotEmpty()
-  userId: string;
+  // @ApiProperty({ description: 'User ID who created the todo' })
+  // @IsNotEmpty()
+  // userId: string;
 }

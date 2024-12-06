@@ -1,0 +1,25 @@
+.tabs {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.tabButton {
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  transition:
+    background-color 0.3s,
+    color 0.3s;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.tabButton:hover {
+  background-color: #e0e7ff;
+}
+
+.active {
+  background-color: #4f46e5;
+  color: #ffffff;
+}
