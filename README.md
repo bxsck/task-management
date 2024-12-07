@@ -1,6 +1,6 @@
 # Hi SWIPE team,
 
-This is the README for the **Pre-Word Assignment Project**. Below is the overview of the project, including implemented features and important notes.
+This is the README for the **Pre-Work Assignment Project**. Below is the overview of the project, including implemented features and important notes.
 
 ---
 
