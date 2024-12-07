@@ -17,7 +17,7 @@ export default function Login() {
 
   useEffect(() => {
     if (isAuthenticated) {
-      router.replace("/dashboard");
+      router.push("/dashboard");
     }
   }, [isAuthenticated, router]);
 
@@ -32,7 +32,7 @@ export default function Login() {
       login(user.display_name);
 
       setTimeout(() => {
-        router.replace("/dashboard");
+        router.push("/dashboard");
       }, 100);
     },
     onError: (error) => {
@@ -42,6 +42,12 @@ export default function Login() {
       setIsLoading(false);
     },
   });
+
+  useEffect(() => {
+    if (mutation.isSuccess) {
+      router.push("/dashboard");
+    }
+  }, [mutation.isSuccess, router]);
 
   const handleSubmit = (e) => {
     e.preventDefault();

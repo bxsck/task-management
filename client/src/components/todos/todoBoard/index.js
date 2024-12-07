@@ -21,11 +21,8 @@ const TodoBoard = () => {
   const [isLoadingMore, setIsLoadingMore] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  console.log("todos:", todos);
-
   useEffect(() => {
     const fetchTodos = async () => {
-      console.log("initial fetchTodos", selectedStatus);
       setIsLoading(true);
       try {
         const data = await getTodoList(selectedStatus, 1, LIMIT);
@@ -33,7 +30,6 @@ const TodoBoard = () => {
         setHasMore((data?.todos?.length || 0) >= LIMIT);
         setPage(1);
       } catch (error) {
-        console.error("Error fetching todos:", error);
       } finally {
         setIsLoading(false);
       }
@@ -50,14 +46,12 @@ const TodoBoard = () => {
       setHasMore((data?.todos?.length || 0) >= LIMIT);
       setPage(1);
     } catch (error) {
-      console.error("Error fetching todos:", error);
     } finally {
       setIsLoading(false);
     }
   };
 
   const loadMore = async () => {
-    console.log("loadMore");
     if (isLoadingMore || !hasMore || isLoading) return;
 
     const nextPage = page + 1;
@@ -71,7 +65,6 @@ const TodoBoard = () => {
       setHasMore(newTodos.length >= LIMIT);
       setPage(nextPage);
     } catch (error) {
-      console.error("Error loading more todos:", error);
     } finally {
       setIsLoadingMore(false);
     }

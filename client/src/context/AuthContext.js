@@ -10,6 +10,7 @@ export function AuthProvider({ children }) {
   const [isAuthenticated, setIsAuthenticated] = useState(!!getAuthToken());
 
   const login = (userData) => {
+    console.log(userData);
     setUser(userData);
     setIsAuthenticated(true);
   };

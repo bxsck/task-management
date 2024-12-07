@@ -7,7 +7,6 @@ const ScrollToTop = () => {
   const [isShowScrollUp, setIsShowScrollUp] = useState(false);
 
   const handleScroll = useCallback(() => {
-    console.log("scrolling", document.documentElement.scrollTop);
     setIsShowScrollUp(document.documentElement.scrollTop > 400);
   }, []);
 

@@ -5,8 +5,11 @@ import Cookies from "js-cookie";
 export const setAuthToken = (token) => {
   Cookies.set("access_token", token, {
     expires: 7,
-    secure: true,
-    sameSite: "Strict",
+    secure: process.env.NODE_ENV === "production",
+    sameSite: "Lax",
+    domain:
+      process.env.NODE_ENV === "production"
+        ? process.env.DOMAIN
   });
 };
 
