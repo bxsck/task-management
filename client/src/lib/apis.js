@@ -8,13 +8,18 @@ export const loginUser = async (username, password) => {
 
 export const getTodoList = async (status, offset = 1, limit = 10) => {
   const accessToken = Cookies.get("access_token");
+  const queryParams = {
+    offset,
+    limit,
+    isSortTodoDateDesc: false,
+  };
+
+  if (status) {
+    queryParams.status = status;
+  }
+
   const response = await axiosInstance.get("/todos", {
-    params: {
-      status,
-      offset,
-      limit,
-      isSortTodoDateDesc: true,
-    },
+    params: queryParams,
     headers: {
       Authorization: `Bearer ${accessToken}`,
     },
@@ -32,10 +37,11 @@ export const createTodo = async (todo) => {
   return response.data.data;
 };
 
-export const updateTodo = async (id, todo) => {
-  const response = await axiosInstance.patch(`/todo-list/${id}`, todo);
-  return response.data.data;
-};
+// TODO: IMPLEMENT UPDATE TODO FEATURE
+// export const updateTodo = async (id, todo) => {
+//   const response = await axiosInstance.patch(`/todos/${id}`, todo);
+//   return response.data.data;
+// };
 
 export const deleteTodo = async (id) => {
   const accessToken = Cookies.get("access_token");

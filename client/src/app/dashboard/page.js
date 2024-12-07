@@ -1,16 +1,14 @@
 "use client";
 
-import { useState } from "react";
-import TodoBoard from "@/components/todos/TodoBoard";
-import CreateTodoModal from "@/components/todos/CreateTodoModal"; // Import CreateTodoModal
+import TodoBoard from "@/components/todos/todoBoard";
 import { useAuth } from "../../context/AuthContext";
 import { useRouter } from "next/navigation";
-import styles from "./dashboard.module.css"; // Import CSS module
+import styles from "./dashboard.module.css";
+// import ScrollToTop from "@/components/common/ScrollToTop";
 
 export default function DashboardPage() {
-  const { user, logout } = useAuth();
+  const { logout } = useAuth();
   const router = useRouter();
-  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleSignOut = () => {
     logout();
@@ -25,15 +23,9 @@ export default function DashboardPage() {
           Sign Out
         </button>
       </div>
-      <button
-        className={styles.createTodoButton}
-        onClick={() => setIsModalOpen(true)}
-      >
-        + Add new task
-      </button>
       <TodoBoard />
-      {isModalOpen && <CreateTodoModal onClose={() => setIsModalOpen(false)} />}
+      {/* // TODO: THE SCROLL TO TOP IS NOT WORKING PROPERLY, FIX SOON */}
+      {/* <ScrollToTop /> */}
     </div>
   );
-  //   return <div>Welcome to the Dashboard, {user.token}!</div>;
 }

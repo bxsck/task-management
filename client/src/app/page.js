@@ -24,10 +24,7 @@ export default function Home() {
             <br />
             Joy and Ease
           </h1>
-          <p>
-            Make task management fun and efficient. Join thousands of happy
-            users!
-          </p>
+          <p>Make task management fun and efficient.</p>
           <div className={styles.ctaGroup}>
             <button className={styles.ctaButton}>Start for Free</button>
           </div>

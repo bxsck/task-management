@@ -1,4 +1,4 @@
-const TodoStatusEnum = Object.freeze({
+export const TodoStatusEnum = Object.freeze({
   TODO: "TODO",
   DOING: "DOING",
   DONE: "DONE",
