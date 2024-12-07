@@ -1,6 +1,6 @@
 import { ApiPropertyOptional } from '@nestjs/swagger';
 import { IsOptional, IsEnum, IsInt, Min, IsBoolean } from 'class-validator';
-import { Type } from 'class-transformer';
+import { Type, Transform } from 'class-transformer';
 import { TodoStatus } from '../todo.entity';
 
 export class TodoQueryDto {
@@ -51,7 +51,9 @@ export class TodoQueryDto {
     description: 'Sort todos by date in descending order',
   })
   @IsOptional()
-  @Type(() => Boolean)
   @IsBoolean()
-  isSortTodoDateDesc?: boolean = true;
+  @Transform(({ value }) => {
+    return value === 'true' || value === true;
+  })
+  isSortTodoDateDesc?: boolean = false;
 }
