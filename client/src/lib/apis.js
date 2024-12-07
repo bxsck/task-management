@@ -3,7 +3,7 @@ import Cookies from "js-cookie";
 
 export const loginUser = async (credentials) => {
   try {
-    const response = await axiosInstance.post("/login", credentials);
+    const response = await axiosInstance.post("/auth/login", credentials);
     return response.data;
   } catch (error) {
     throw error.response?.data || { message: "Network error occurred" };
