@@ -1,6 +1,4 @@
-# Pre-Word Assignment Project
-
-Hi SWIPE team,
+# Hi SWIPE team,
 
 This is the README for the **Pre-Word Assignment Project**. Below is the overview of the project, including implemented features and important notes.
 
