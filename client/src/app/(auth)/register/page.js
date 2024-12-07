@@ -31,7 +31,7 @@ export default function Register() {
       return false;
     }
     if (password !== confirmPassword) {
-      setPasswordError("Password match");
+      setPasswordError("Password does not match");
       return false;
     }
     setPasswordError("");
