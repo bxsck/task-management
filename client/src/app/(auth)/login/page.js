@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import styles from "./login.module.css"; // Update the import to use the new CSS module
+import styles from "./login.module.css";
 
 import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
@@ -64,6 +64,10 @@ export default function Login() {
             <button type="submit" className={styles.ctaButton}>
               Login
             </button>
+            <p className={styles.signupLink}>
+              Don&apos;t have an account?{" "}
+              <Link href="/register">Sign up here</Link>
+            </p>
           </form>
         </div>
       </main>

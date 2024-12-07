@@ -1,0 +1,126 @@
+.card {
+  background-color: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  padding: 20px;
+  margin: 12px 0;
+  transition: all 0.2s ease;
+  border: 1px solid #f0f0f0;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.title {
+  font-size: 1.1rem;
+  color: #2d3748;
+  font-weight: 500;
+  margin: 0;
+  letter-spacing: 0.2px;
+}
+
+.deleteButton {
+  background: none;
+  border: none;
+  color: #fc8181;
+  font-size: 1.25rem;
+  cursor: pointer;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.deleteButton:hover {
+  background-color: #fff5f5;
+  color: #e53e3e;
+}
+
+.description {
+  font-size: 0.9rem;
+  color: #718096;
+  line-height: 1.5;
+  margin: 8px 0;
+}
+
+.createdAt {
+  font-size: 0.875rem;
+  color: #9b9b9b;
+  font-weight: 300;
+}
+
+.actions {
+  margin-top: 12px;
+  display: flex;
+  gap: 6px;
+  justify-content: flex-end;
+}
+
+.statusButton {
+  flex: 1;
+  padding: 4px 8px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  font-weight: 500;
+  font-size: 0.8rem;
+  max-width: 80px;
+}
+
+.statusButton.todo {
+  background-color: #e9d5ff;
+  color: #6b46c1;
+}
+
+.statusButton.doing {
+  background-color: #fef3c7;
+  color: #d97706;
+}
+
+.statusButton.done {
+  background-color: #dcfce7;
+  color: #15803d;
+}
+
+.statusButton.delete {
+  background-color: #eac1c1;
+}
+
+.statusButton:hover {
+  opacity: 0.9;
+}
+
+.dates {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px dashed #e2e8f0;
+  font-size: 0.875rem;
+  color: #666;
+}
+
+.date {
+  margin: 0;
+  font-size: 0.8rem;
+  color: #a0aec0;
+}
+
+.date span {
+  color: #805ad5;
+  font-weight: 500;
+  margin-right: 4px;
+}

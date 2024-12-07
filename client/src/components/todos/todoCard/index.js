@@ -2,40 +2,35 @@
 
 import React from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { deleteTodo, updateTodo } from "@/lib/apis";
-import styles from "./TodoCard.module.css"; // Import CSS module
+import { deleteTodo } from "@/lib/apis";
+import styles from "./TodoCard.module.css";
 
-const TodoCard = ({ todo }) => {
+const TodoCard = ({ todo, onDelete }) => {
   const queryClient = useQueryClient();
 
-  // Mutation for updating todo status
-  const updateMutation = useMutation({
-    mutationFn: (newStatus) => updateTodo(todo.id, { status: newStatus }),
-    onSuccess: () => {
-      // Invalidate and refetch
-      queryClient.invalidateQueries({ queryKey: ["todos"] });
-    },
-  });
-
-  // Mutation for deleting todo
   const deleteMutation = useMutation({
     mutationFn: () => deleteTodo(todo.id),
     onSuccess: () => {
-      // Invalidate and refetch
-      queryClient.invalidateQueries({ queryKey: ["todos"] });
+      onDelete();
     },
   });
 
-  const handleStatusChange = (newStatus) => {
-    updateMutation.mutate(newStatus);
-  };
+  // const updateMutation = useMutation({
+  //   mutationFn: (newStatus) => updateTodo(todo.id, { status: newStatus }),
+  //   onSuccess: () => {
+  //     queryClient.invalidateQueries({ queryKey: ["todos"] });
+  //   },
+  // });
+
+  // const handleStatusChange = (newStatus) => {
+  //   updateMutation.mutate(newStatus);
+  // };
 
   const handleDelete = () => {
     if (window.confirm("Are you sure you want to delete this todo?")) {
       deleteMutation.mutate();
     }
   };
-
   return (
     <div className={styles.card}>
       <div className={styles.header}>
@@ -47,9 +42,18 @@ const TodoCard = ({ todo }) => {
       {todo.description && (
         <p className={styles.description}>{todo.description}</p>
       )}
-      <p className={styles.createdAt}>
-        Created: {new Date(todo.createdAt).toLocaleString()}
-      </p>
+      <div className={styles.dates}>
+        <p className={styles.date}>
+          <span>Due: </span>
+          {todo.todo_date ? new Date(todo.todo_date).toLocaleDateString() : "-"}
+        </p>
+        <p className={styles.date}>
+          <span>Created: </span>
+          {new Date(todo.createdAt).toLocaleDateString()}
+        </p>
+      </div>
+      {/* // TODO: EDIT STATUS FEATURE */}
+      {/*
       <div className={styles.actions}>
         {todo.status !== "TODO" && (
           <button
@@ -59,6 +63,7 @@ const TodoCard = ({ todo }) => {
             To Do
           </button>
         )}
+       
         {todo.status !== "DOING" && (
           <button
             onClick={() => handleStatusChange("DOING")}
@@ -75,7 +80,7 @@ const TodoCard = ({ todo }) => {
             Done
           </button>
         )}
-      </div>
+      </div> */}
     </div>
   );
 };

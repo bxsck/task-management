@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import styles from "./CreateTodoModal.module.css";
-import { createTodo, getTodoList } from "../../lib/apis"; // Import the fetchTodos function
-
+import { createTodo } from "../../../lib/apis";
+import { TodoStatusEnum } from "@/constants/todo";
 const CreateTodoModal = ({ onClose }) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [status, setStatus] = useState("TODO");
-  const [todoDate, setTodoDate] = useState("");
+  const [todoDate, setTodoDate] = useState(
+    new Date().toISOString().split("T")[0],
+  );
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -56,7 +58,13 @@ const CreateTodoModal = ({ onClose }) => {
               value={status}
               onChange={(e) => setStatus(e.target.value)}
               className={styles.select}
-            ></select>
+            >
+              {Object.values(TodoStatusEnum).map((status) => (
+                <option key={status} value={status}>
+                  {status}
+                </option>
+              ))}
+            </select>
           </div>
           <div className={styles.formGroup}>
             <label className={styles.label}>Todo Date</label>
@@ -65,6 +73,7 @@ const CreateTodoModal = ({ onClose }) => {
               value={todoDate}
               onChange={(e) => setTodoDate(e.target.value)}
               className={styles.dateInput}
+              onClick={(e) => e.target.showPicker()}
             />
           </div>
           <button type="submit" className={styles.button}>

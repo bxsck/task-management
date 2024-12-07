@@ -12,7 +12,9 @@ export default function Home() {
           <Link href="/login">
             <button className={styles.loginBtn}>Login</button>
           </Link>
-          <button className={styles.signupBtn}>Get Started →</button>
+          <Link href="/register">
+            <button className={styles.signupBtn}>Get Started →</button>
+          </Link>
         </div>
       </nav>
 
@@ -24,12 +26,11 @@ export default function Home() {
             <br />
             Joy and Ease
           </h1>
-          <p>
-            Make task management fun and efficient. Join thousands of happy
-            users!
-          </p>
+          <p>Make task management fun and efficient.</p>
           <div className={styles.ctaGroup}>
-            <button className={styles.ctaButton}>Start for Free</button>
+            <Link href="/register">
+              <button className={styles.ctaButton}>Start for Free</button>
+            </Link>
           </div>
         </div>
 

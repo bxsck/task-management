@@ -8,11 +8,11 @@
   box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
   color: #2d3748;
   position: relative;
-  overflow-y: auto; /* Enable vertical scrolling */
+  overflow-y: scroll;
 }
 
 .dashboard h1 {
-  color: #4f46e5; /* Use primary color from landing page */
+  color: #4f46e5;
 }
 
 .backgroundDecoration {

@@ -32,14 +32,13 @@ export class TodosService {
       status,
       limit = 10,
       offset: page = 1,
-      isSortTodoDateDesc = true,
+      isSortTodoDateDesc = false,
     } = query;
 
     const filter: any = { userId };
     if (status) {
       filter.status = status;
     }
-
     const sort: FindOptionsOrder<Todo> = {
       todo_date: isSortTodoDateDesc ? 'DESC' : 'ASC',
     };
@@ -55,8 +54,6 @@ export class TodosService {
         ...filter,
       }),
     ]);
-
-    console.log('filter', filter);
 
     return {
       todos,
