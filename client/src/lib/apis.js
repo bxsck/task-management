@@ -6,6 +6,11 @@ export const loginUser = async (username, password) => {
   return response.data;
 };
 
+export const signupUser = async (userData) => {
+  const response = await axiosInstance.post("/users/register", userData);
+  return response.data.data;
+};
+
 export const getTodoList = async (status, offset = 1, limit = 10) => {
   const accessToken = Cookies.get("access_token");
   const queryParams = {

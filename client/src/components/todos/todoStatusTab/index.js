@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./TodoStatusTab.module.css"; // Import CSS module
+import styles from "./TodoStatusTab.module.css";
 
 const TODO_STATUSES = ["TODO", "DOING", "DONE"];
 

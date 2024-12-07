@@ -3,7 +3,7 @@
 import React from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { deleteTodo } from "@/lib/apis";
-import styles from "./TodoCard.module.css"; // Import CSS module
+import styles from "./TodoCard.module.css";
 
 const TodoCard = ({ todo, onDelete }) => {
   const queryClient = useQueryClient();
@@ -11,7 +11,7 @@ const TodoCard = ({ todo, onDelete }) => {
   const deleteMutation = useMutation({
     mutationFn: () => deleteTodo(todo.id),
     onSuccess: () => {
-      onDelete(); // Call the refetch function after successful deletion
+      onDelete();
     },
   });
 
