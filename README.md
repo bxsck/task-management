@@ -38,4 +38,9 @@ This is the README for the **Pre-Word Assignment Project**. Below is the overvie
 You can access the live application here:  
 [https://bosck-taskie.vercel.app/](https://bosck-taskie.vercel.app/)
 
+## Api Docs
+
+Swagger: 
+https://taskie-api.onrender.com/api-docs
+
 ---
