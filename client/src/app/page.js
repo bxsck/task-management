@@ -28,7 +28,9 @@ export default function Home() {
           </h1>
           <p>Make task management fun and efficient.</p>
           <div className={styles.ctaGroup}>
-            <button className={styles.ctaButton}>Start for Free</button>
+            <Link href="/register">
+              <button className={styles.ctaButton}>Start for Free</button>
+            </Link>
           </div>
         </div>
 
