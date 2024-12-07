@@ -6,22 +6,40 @@ import styles from "./login.module.css";
 import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/context/AuthContext";
-import axiosInstance from "@/lib/axios";
 import { setAuthToken } from "@/lib/auth";
+import { loginUser } from "@/lib/apis";
+import { useEffect, useState } from "react";
 
 export default function Login() {
   const router = useRouter();
-  const { login } = useAuth();
+  const { login, isAuthenticated } = useAuth();
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      router.replace("/dashboard");
+    }
+  }, [isAuthenticated, router]);
 
   const mutation = useMutation({
-    mutationFn: (credentials) => axiosInstance.post("/auth/login", credentials),
-    onSuccess: ({ data: response }) => {
-      setAuthToken(response.data.access_token);
-      login(response.data.user.display_name);
-      router.push("/dashboard");
+    mutationFn: loginUser,
+    onMutate: () => {
+      setIsLoading(true);
+    },
+    onSuccess: (response) => {
+      const { access_token, user } = response.data;
+      setAuthToken(access_token);
+      login(user.display_name);
+
+      setTimeout(() => {
+        router.replace("/dashboard");
+      }, 100);
     },
     onError: (error) => {
-      alert(error.response?.data?.message || "Login failed");
+      alert(error.message || "Login failed");
+    },
+    onSettled: () => {
+      setIsLoading(false);
     },
   });
 
@@ -61,8 +79,12 @@ export default function Login() {
               autoComplete="current-password"
               className={`${styles.input} ${styles.inputTextVisible}`}
             />
-            <button type="submit" className={styles.ctaButton}>
-              Login
+            <button
+              type="submit"
+              className={styles.ctaButton}
+              disabled={isLoading}
+            >
+              {isLoading ? "Logging in..." : "Login"}
             </button>
             <p className={styles.signupLink}>
               Don&apos;t have an account?{" "}

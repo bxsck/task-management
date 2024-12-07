@@ -1,9 +1,13 @@
 import axiosInstance from "./axios";
 import Cookies from "js-cookie";
 
-export const loginUser = async (username, password) => {
-  const response = await axios.post("/login", { username, password });
-  return response.data;
+export const loginUser = async (credentials) => {
+  try {
+    const response = await axiosInstance.post("/login", credentials);
+    return response.data;
+  } catch (error) {
+    throw error.response?.data || { message: "Network error occurred" };
+  }
 };
 
 export const signupUser = async (userData) => {

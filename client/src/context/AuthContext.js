@@ -1,37 +1,36 @@
 "use client";
 
-import { createContext, useContext, useState, useEffect } from "react";
+import { createContext, useContext, useState } from "react";
 import { getAuthToken, clearAuthToken } from "../lib/auth";
 
 const AuthContext = createContext();
 
-export const AuthProvider = ({ children }) => {
+export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isAuthenticated, setIsAuthenticated] = useState(!!getAuthToken());
 
-  useEffect(() => {
-    const token = getAuthToken();
-    if (token) {
-      setUser({ token });
-    }
-    setIsLoading(false);
-  }, []);
+  const login = (userData) => {
+    setUser(userData);
+    setIsAuthenticated(true);
+  };
 
-  const login = (userData) => setUser(userData);
   const logout = () => {
     clearAuthToken();
     setUser(null);
+    setIsAuthenticated(false);
   };
 
-  if (isLoading) {
-    return null;
-  }
-
   return (
-    <AuthContext.Provider value={{ user, login, logout }}>
+    <AuthContext.Provider value={{ user, login, logout, isAuthenticated }}>
       {children}
     </AuthContext.Provider>
   );
-};
+}
 
-export const useAuth = () => useContext(AuthContext);
+export const useAuth = () => {
+  const context = useContext(AuthContext);
+  if (!context) {
+    throw new Error("useAuth must be used within an AuthProvider");
+  }
+  return context;
+};
