@@ -5,11 +5,12 @@ import Cookies from "js-cookie";
 export const setAuthToken = (token) => {
   Cookies.set("access_token", token, {
     expires: 7,
-    secure: process.env.NODE_ENV === "production",
+    secure: true,
     sameSite: "Lax",
     domain:
       process.env.NODE_ENV === "production"
-        ? process.env.DOMAIN
+        ? process.env.DOMAIN_NAME
+        : undefined,
   });
 };
 
