@@ -19,7 +19,7 @@ export default function Home() {
       </nav>
 
       <main className={styles.main}>
-        <div className={styles.hero}>
+        <div className={styles["main-content"]}>
           <span className={styles.badge}>✨ Your Personal Task Assistant</span>
           <h1>
             Organize Tasks with
@@ -28,13 +28,13 @@ export default function Home() {
           </h1>
           <p>Make task management fun and efficient.</p>
           <div className={styles.ctaGroup}>
-            <Link href="/register">
+            <Link href="/login">
               <button className={styles.ctaButton}>Start for Free</button>
             </Link>
           </div>
         </div>
 
-        <div className={styles.heroImage}>
+        <div>
           <Image
             src="/assets/images/illustrate_o.png"
             alt="Task Management Illustration"
