@@ -17,7 +17,7 @@
   min-height: 100vh;
   background: linear-gradient(135deg, #fff6f9 0%, #f0f7ff 100%);
   position: relative;
-  overflow: auto;
+  overflow-x: hidden;
 }
 
 .backgroundDecoration {
