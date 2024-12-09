@@ -1,7 +1,18 @@
-"use client";
-import { AuthProvider } from "../context/AuthContext";
 import "./globals.css";
-import QueryProvider from "./QueryClientProvider";
+
+export const metadata = {
+  manifest: "/manifest.json",
+  themeColor: "#000000",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "default",
+    title: "Taskie App",
+  },
+  icons: {
+    icon: "/icons/icon-192x192.png",
+    apple: "/icons/icon-192x192.png",
+  },
+};
 
 export default function RootLayout({ children }) {
   return (
@@ -15,11 +26,7 @@ export default function RootLayout({ children }) {
           content="a simple task management application"
         />
       </head>
-      <body>
-        <QueryProvider>
-          <AuthProvider>{children}</AuthProvider>
-        </QueryProvider>
-      </body>
+      <body>{children}</body>
     </html>
   );
 }
