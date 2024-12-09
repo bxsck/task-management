@@ -41,6 +41,7 @@ export class TodosService {
     }
     const sort: FindOptionsOrder<Todo> = {
       todo_date: isSortTodoDateDesc ? 'DESC' : 'ASC',
+      _id: 'ASC',
     };
 
     const [todos, total] = await Promise.all([
