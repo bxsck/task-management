@@ -1,6 +1,6 @@
 {
-    "name": "Taskie",
-    "short_name": "Task",
+    "name": "Taskie App",
+    "short_name": "Taskie",
     "description": "Task Management App",
     "start_url": "/",
     "display": "standalone",
