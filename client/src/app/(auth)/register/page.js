@@ -64,7 +64,7 @@ export default function Register() {
 
       <main className={styles.main}>
         <div className={styles.hero}>
-          <h1>Create Account</h1>
+          <h1>Sign Up</h1>
           <form className={styles.registerForm} onSubmit={handleSubmit}>
             <input
               name="username"
