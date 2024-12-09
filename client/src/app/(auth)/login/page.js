@@ -69,7 +69,7 @@ export default function Login() {
       </nav>
 
       <main className={styles.main}>
-        <div className={styles.hero}>
+        <div className={styles["main-content"]}>
           <h1>Login</h1>
           <form className={styles.loginForm} onSubmit={handleSubmit}>
             <input
