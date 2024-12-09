@@ -11,7 +11,7 @@
   align-items: center;
   justify-items: center;
   min-height: 100svh;
-  padding: 20px; /* Updated from 80px for better mobile view */
+  padding: 20px;
   gap: 64px;
   font-family: var(--font-geist-sans);
   min-height: 100vh;
@@ -67,7 +67,7 @@
   grid-row-start: 2;
   justify-content: space-between;
   align-items: center;
-  padding: 2rem 1rem; /* Updated padding */
+  padding: 2rem 1rem;
   max-width: 1200px;
   margin: 0 auto;
   position: relative;
@@ -82,7 +82,7 @@
 }
 
 .main-content h1 {
-  font-size: clamp(2rem, 5vw, 3rem); /* Responsive font size */
+  font-size: clamp(2rem, 5vw, 3rem);
   margin-bottom: 1rem;
   line-height: 1.2;
   margin: 1.5rem 0;
@@ -106,12 +106,12 @@
   border: 1px solid #ccc;
   border-radius: 5px;
   font-size: 1rem;
-  background-color: rgba(255, 255, 255, 0.8); /* Update background color */
+  background-color: rgba(255, 255, 255, 0.8);
 }
 
 .inputTextVisible {
-  color: #000; /* Change text color to black for better visibility */
-  background-color: #fff; /* Ensure background is white for contrast */
+  color: #000;
+  background-color: #fff;
 }
 
 .ctaButton {
@@ -148,7 +148,6 @@
   text-decoration: underline;
 }
 
-/* Add these media queries at the end of the file */
 @media (max-width: 768px) {
   .page {
     gap: 32px;

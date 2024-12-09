@@ -100,6 +100,6 @@
   .signOutButton {
     padding: 0.5rem 1rem;
     font-size: 0.75rem;
-    align-self: flex-end; /* Align to the right */
+    align-self: flex-end;
   }
 }
